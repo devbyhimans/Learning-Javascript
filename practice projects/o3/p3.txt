@@ -1,0 +1,15 @@
+ek div bano aur jab uspe mouse move kre toh picture pop-up ho jaye
+
+humara mouse jab chal rha hai toh kai baar chal rha hai jiske wjh se kai baar card create ho jayenge woh hum nahi chahte
+
+✨ **Mouse jitni baar chal rha hai chale, bas execution of function kum bar ho. Let's say mouse pure div pe 170 baar (means 170 points par) move hota hai, toh function 170 baar nahi, sirf 8 baar chalna chahiye.**  
+
+🔥 **This process is called _throttling_ — kisi particular code ke number of executions ko kum kar dena.** 🚦
+
+basically throttlefunction(function paro(),time delay)--this means fuction paro will execute on interval of given time delay
+
+every time function paro runs-- make a div which is absolute and overflow hidden
+
+div ke andar image bano aur us image ko neehe push krdo 
+
+image ko animage way me uppar lao

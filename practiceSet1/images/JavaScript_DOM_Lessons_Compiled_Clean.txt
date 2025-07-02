@@ -1,0 +1,214 @@
+
+JavaScript DOM Manipulation: Complete Lessons
+
+---
+
+Lesson 1: Introduction to the DOM
+
+What is the DOM?
+The Document Object Model (DOM) is a programming interface for web documents. It represents the page so programs can change the document structure, style, and content.
+
+Key points
+- The DOM is a tree of objects representing elements in the HTML document.
+- JavaScript can manipulate this tree to update the webpage dynamically.
+
+Example
+No code yet — just conceptual understanding.
+
+---
+
+Lesson 2: Selecting Elements
+
+Ways to select elements in the DOM
+
+Method                       Description
+getElementById(id)         Select element by ID
+getElementsByClassName(cls) Select all elements by class
+getElementsByTagName(tag)  Select all elements by tag name
+querySelector(selector)    Select first matching CSS selector
+querySelectorAll(selector) Select all matching CSS selectors
+
+Example
+const elem = document.getElementById("myId");
+const items = document.querySelectorAll(".myClass");
+
+Important
+- querySelector and querySelectorAll use CSS selectors.
+- getElementsByClassName and getElementsByTagName return live collections.
+
+---
+
+Lesson 3: Changing Element Content & Attributes
+
+Changing content
+
+- textContent: changes text inside element
+- innerHTML: changes HTML content inside element
+
+Example
+<div id="myDiv">Hello</div>
+
+const div = document.getElementById("myDiv");
+div.textContent = "New Text";
+div.innerHTML = "<b>Bold Text</b>";
+
+Changing attributes
+
+- setAttribute(name, value) to set
+- getAttribute(name) to get
+
+const link = document.querySelector("a");
+link.setAttribute("href", "https://example.com");
+
+---
+
+Lesson 4: Traversing the DOM Tree
+
+Parent, children, siblings
+
+Property            Description
+parentElement     Returns parent element
+children          Returns HTMLCollection of children
+nextElementSibling Next sibling element
+previousElementSibling Previous sibling element
+
+Example
+const list = document.getElementById("list");
+const firstItem = list.children[0];
+const parent = firstItem.parentElement;
+
+---
+
+Lesson 5: Handling Events
+
+Adding event listeners
+
+element.addEventListener("click", function() {
+  // your code
+});
+
+Event types
+
+- click, dblclick, mouseover, keydown, submit, load, etc.
+
+Example
+
+<button id="btn">Click me</button>
+
+document.getElementById("btn").addEventListener("click", function () {
+  alert("Button clicked!");
+});
+
+---
+
+Lesson 6: Event Object & Preventing Default Behavior
+
+Event Object
+
+- Passed automatically to event handler
+- Has info about event (target, key pressed, mouse position, etc.)
+
+Example
+
+document.addEventListener("click", function(event) {
+  console.log(event.target); // element clicked
+});
+
+Prevent Default
+
+Stops default action like form submission or link navigation.
+
+document.querySelector("form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  alert("Form submitted prevented!");
+});
+
+---
+
+Lesson 7: Creating & Inserting Elements Dynamically
+
+Create element
+
+const div = document.createElement("div");
+div.textContent = "Hello!";
+document.body.appendChild(div);
+
+Insert Methods
+
+- appendChild(): insert at end
+- prepend(): insert at beginning
+- before(), after(): insert relative to another element
+
+Example: Adding List Items
+
+const ul = document.getElementById("list");
+const li = document.createElement("li");
+li.textContent = "New Item";
+ul.appendChild(li);
+
+---
+
+Lesson 8: Removing and Replacing DOM Elements
+
+Remove
+
+const el = document.getElementById("removeMe");
+el.remove();
+
+Replace
+
+const oldEl = document.getElementById("old");
+const newEl = document.createElement("p");
+newEl.textContent = "New paragraph";
+oldEl.parentElement.replaceChild(newEl, oldEl);
+
+Clear children
+
+const list = document.getElementById("list");
+list.innerHTML = "";
+
+---
+
+Lesson 9: DOM Class Manipulation & Styling
+
+classList methods
+
+- .add(), .remove(), .toggle(), .contains()
+
+Example: Toggle Dark Mode
+
+const body = document.body;
+body.classList.toggle("dark");
+
+Inline styles
+
+element.style.color = "red";
+element.style.padding = "10px";
+
+---
+
+Lesson 10: Advanced Event Handling – Delegation & Bubbling
+
+Bubbling
+
+Events bubble from child to parent.
+
+Delegation
+
+Attach event listener to parent, check event.target to handle children.
+
+Example
+
+document.getElementById("list").addEventListener("click", function(event) {
+  if (event.target.tagName === "LI") {
+    alert(event.target.textContent);
+  }
+});
+
+Stop bubbling
+
+event.stopPropagation();
+
+---
+
+End of Lessons 1 to 10

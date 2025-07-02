@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Game</title>
+    <style>
+        
+        .cricketGame {
+            background-color: beige;
+            text-align: center;
+            margin-top: 50px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 20px;
+            width: 400px;
+            margin: auto;
+            margin-top: 200px;
+        
+        }
+        .choice{
+            height:100px ;
+            width: 100px;
+            border: none;
+            margin: 10px;
+            background-color: bisque;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        #score{
+            font-weight: bold;
+        }
+        .images{
+            height: 75px;
+            border-radius: 30%;
+        }
+        .reset{
+            margin-top: 10px;
+            height: 40px;
+            background-color: rgb(251, 213, 44);
+            border: 2px solid rgb(244, 3, 7);
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cricketGame">
+        <h1>Bat Ball Stump Game</h1>
+        
+        <button class="choice" onclick="playGame('Bat');" ><img src="images/bat.webp" alt="bat image" class="images"></button>
+
+        <button class="choice" onclick="playGame('Ball');"><img src="images/ball.webp" alt="ball image" class="images"></button>
+
+        <button class="choice" onclick="playGame('Stump');"><img src="images/wicket.webp" alt="wicket image" class="images"></button>
+
+
+
+        <!-- <button onclick="localStorage.clear()">Reset Score</button>
+        after clearing score from local storage it is still available in the variable score so we will have to reset it -->
+        <button class="reset" onclick=" localStorage.clear() 
+        resetScore(null) 
+        //live update score on ui when resetting
+        showResult()">Reset Score</button>
+
+<!-- Clears all data from localStorage (including the score).
+Calls resetScore(scoreStr).
+However, scoreStr still holds the old value from when the page was loaded.
+So, when you call resetScore(scoreStr), it may not actually reset the score to zero, because scoreStr is not updated after clearing localStorage. -->
+
+        <h3 id="user-move"></h3>
+        <h3 id="computer-move"></h3>
+        <h3 id="result"></h3>
+        <div id="score"></div>
+
+</div>
+    
+    <script>
+//object to keep track of scores , fetching from localStorage
+let scoreStr=localStorage.getItem('score');
+let score;
+//if scoreStr is null or undefined, we will initialize score with default values
+resetScore(scoreStr);
+
+function resetScore(scoreStr){
+            //if scoreStr is null or undefined, we will initialize score with default values
+            //if scoreStr is not null or undefined, we will parse it to get the score object
+            //if scoreStr is empty string, we will also initialize score with default values
+     score=scoreStr ? JSON.parse(scoreStr) :{
+                win: 0,
+                lose: 0,
+                tie: 0}
+
+
+                score.displayScore =function(){
+                return (`\nScore -- Win: ${score.win}, Lose: ${score.lose}, tie: ${score.tie}`);
+            };
+        };
+  
+        function generateRandom(){
+            let choice=Math.random()*3;
+            return choice
+        }
+
+        function computerChoice(){
+            let choice=generateRandom();
+            if(choice<=1){
+                return 'Bat';
+            }else if(choice>1 && choice<=2){
+                return 'Ball';
+            }else{
+                return 'Stump';
+            }
+        }
+
+        function playGame(playerChoice){
+            let computer=computerChoice();
+            let result;
+            if(playerChoice==computer){
+                result=`It's a Tie`;
+                score.tie++;
+            }
+            else if(playerChoice=='Bat' && computer=='Ball'){
+                result=`You Win! Bat beats Ball`;
+                score.win++;
+            }
+            else if(playerChoice=='Ball' && computer=='Stump'){
+                result=`You Win! Ball beats Stump`;
+                score.win++;
+            }
+            else if(playerChoice=='Stump' && computer=='Bat'){
+                result=`You Win! Stump beats Bat`;
+                score.win++;
+            }
+            else{
+                result=`You Lose! ${computer} beats ${playerChoice}`;
+                score.lose++;
+            }
+            return showResult(result, computer, playerChoice);
+        }
+
+        function showResult(result, computer, player) {
+            localStorage.setItem('score', JSON.stringify(score));
+
+            document.querySelector('#user-move').innerHTML = player ? `You have chosen ${player}`:'';
+            document.querySelector('#computer-move').innerHTML = computer ? `Computer choice is ${computer}`:'';
+            document.querySelector('#result').innerHTML =  result||'' ; // Fixed selector
+            document.querySelector('#score').innerHTML = score.displayScore();
+        }
+       
+    </script>
+</body>
+</html>

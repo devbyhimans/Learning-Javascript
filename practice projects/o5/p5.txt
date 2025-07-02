@@ -1,0 +1,12 @@
+task--The aim of this project is to implement an Instagram-like "double-tap to like" feature on an image. When the user double-clicks (or double-taps) on the image, a heart icon pops up in the center, mimicking the "like" animation seen in Instagram storie
+
+******JavaScript Functionality******
+The script listens for a dblclick (double-click) event on the container.
+When a double-click occurs, the heart icon's transform property is set to scale(1), making it pop up with a smooth animation.
+ adding a setTimeout to scale it back to 0 after a short delay, so the heart disappears again.
+
+
+******CSS Styling*****
+The container is centered on the page and styled to look like a card.
+The heart icon is absolutely positioned at the center of the container and uses a CSS transition for smooth scaling.
+By default, the heart icon is invisible (scale(0)).

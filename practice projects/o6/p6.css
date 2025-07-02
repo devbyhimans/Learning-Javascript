@@ -1,0 +1,50 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+}
+
+#main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+
+  /* hides the default mouse arrow */
+  cursor: none;
+}
+.cursor{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+/* this poperty makes cursor visible when there is same color as cursor in background */
+  mix-blend-mode: difference;
+
+  /* for icon inside the cursor */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cursor i{
+  color: red;
+  font-size: 16px;
+  pointer-events: none;
+}
+h1{
+  font-size: 9vw;
+  font-weight: 900;
+
+}

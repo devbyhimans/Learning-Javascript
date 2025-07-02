@@ -1,0 +1,25 @@
+/**
+ * 🚦 Throttle Function
+ * -------------------
+ * ⏳ Ensures the callback is only executed once every 'limit' milliseconds,
+ * no matter how many times the returned function is called.
+ *
+ * 🛠️ @param {Function} callback - The function to throttle.
+ * ⏱️ @param {number} limit - The time interval in milliseconds.
+ * 🔁 @returns {Function} - A throttled version of the callback.
+ *
+ * 💡 Example:
+ * const throttledFn = throttle(() => console.log('Called!'), 1000);
+ * window.addEventListener('resize', throttledFn);
+ */
+
+function throttle(callback, limit) {
+  let lastCall = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - lastCall >= limit) {
+      lastCall = now;
+      callback.apply(this, args);
+    }
+  };
+}

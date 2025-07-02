@@ -1,0 +1,18 @@
+task-make a rectangle and as we move to left to rectangle the color of the rectanges gets bluer and as we move to right the color of rectangle gets reder
+
+->sabse pehle yeh pata karo ke mouse rectangle par aaya hua hai ya nahi(refer--findinglocation)
+->ab yeh calculate karo ke hum center se left par hai ya center se right par hai(refer--findingmouseloc)
+-> ab yeh calculate karo hum center se kitna left me hai , jitna left me hai utni intesity se color lagao.
+
+color-rgb(255,255,255)
+range-[0,255]---> so when mouse at center red=0 and when at extreme left red=255
+
+->we will calculate mouse pointer position inside rectange by subracting 
+mouse position from rectangle leftest corner(refer--positioncal)
+
+****WE ARE USING GSAP UTILITY FUNTION****
+
+->mapRange(inMin,inMax,outMin,outMap,valueToMap)
+this function takes the min and max input range and  output range with given max and min output range and maps the given value in that range.
+
+so basically when we are extreme left corner that is between [0,250](assuming length of the rectangle is 500 so center is 250) at zero we want darkest red(255) and at center we want no red(0)--so this function maps 0->255 and 250->0.

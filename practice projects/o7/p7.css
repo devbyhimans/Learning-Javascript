@@ -1,0 +1,51 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+}
+
+#main{
+  height: 100%;
+  width: 100%;
+  background-color: #111;
+  position: relative; /*har parent ko apan relavtive dete hai */
+}
+
+.elm{
+  position: relative;
+  width: 100%;
+  height: 135px;
+  border-bottom:3px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Movie title styling */
+.elm h1{
+  position: relative;
+  font-size: 5vw;
+  z-index: 2;
+  mix-blend-mode: difference;
+}
+
+/* Movie poster image styling */
+.elm img{
+  
+    height: 150px;
+    width :150px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    position: absolute;
+  
+    opacity: 0;
+    transition: all linear 0.2s;
+  }
